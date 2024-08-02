@@ -72,6 +72,7 @@ void loop() {
     }
     onHomeScreen = !onHomeScreen;
     delay(500);
+    
   }
 
   buttonListener(); // Call the button listener function
@@ -86,11 +87,16 @@ void loop() {
     drawScoreAt(0, 0, score);
     timePetMovements(currentTime);
     scoreMove(currentTime);
+  if (score >= 3) {
+    lcd.print("WHOAA..");
+    lcd.clear();
+  }
+     
   }
 
   if (onHomeScreen) {
     timePetMovements(currentTime);
-    scoreMove(currentTime);
+    scoreMove(000);
     drawDividerAt(1, 3);
     drawDividerAt(0, 3);
     drawScoreAt(0, 0, score);

@@ -16,7 +16,7 @@ void buttonListener() {
     case 1:
       buttonPress = 1;
       drawFace(SMOKE);
-      digitalWrite(vapePin, HIGH);
+      digitalWrite(vapePin, LOW);
       delay(500);
       digitalWrite(vapePin, LOW);
       drawFace(SMILE);
@@ -41,7 +41,7 @@ void buttonListener() {
       showMenu();
       clearCharAt(5, 1);
       setPointerTo(10, 0);
-      if (vapeState == LOW) {
+      if (vapeState == HIGH) {
         onHomeScreen = true;
       }
       break;
