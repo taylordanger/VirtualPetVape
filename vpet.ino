@@ -1,92 +1,99 @@
-// Created: 2019-04-29 15:00:00
-// Last modified: 2019-04-29 15:00:00
-// author:  TheCatwoman
-
-
-//this is a program for arduino UNO that is a virtual pet vape battery
-//sort of super silly , i know 
-//but whatever art is art
-//be safe and dont explode your batteries lol
-
-
 #include <LiquidCrystal.h>
+
+// Function declarations
+void drawPet(int expression);
+void timePetMovements(unsigned long currentTime);
+void scoreDown(unsigned long currentTime);
+void buttonListener();
+void drawDividerAt(int lcdRow, int lcdCol);
+void drawScoreAt(int lcdRow, int lcdCol, int score);
+void resetScore();
 
 #define RIGHT_EYE 0
 #define LEFT_EYE 1
 #define SMILE 2
 #define FROWNING 3
-#define OPEN_MOUTH 4
+#define SMOKE 4
+#define HEART 5
+#define DIVIDER 6
 
-LiquidCrystal(0,1,9,10,11);
+LiquidCrystal lcd(0, 1, 8, 9, 10, 11);
 const int buttonPin = 2;
 const int vapePin = 3;
 
-
 int buttonState = HIGH;
-int vapeState = HIGH;
-int buttonPresses = 0;
+int vapeState = LOW;
+int buttonPress = 0;
 int score = 0;
-
 int onHomeScreen = true;
 
-if(onHomeScreen = true) {
-    drawDividerAt(0, 4);
-    drawScoreAt(0, 0, score);
-}
+unsigned long prevMove = 0;
+unsigned long moveDelay = 900;
+int timesMoved = 0;
 
 void setup() {
-  pinMode(buttonPin, INPUT);
-  pinMode(vapePin, OUTPUT);
-  lcd.begin(16, 2);
-  lcd.print("Vape Pet");
-  lcd.setCursor(0, 1);
-  lcd.print("vape to feed me!!");
-  lcd.clear();
-  drawFace(SMILE);  
-  drawDividerAt(0, 4);
-  drawScoreAt(0, 0, score);
+unsigned long currentTime = millis();
 
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(vapePin, INPUT_PULLUP);
+  lcd.begin(16, 2);
+  drawDividerAt(1, 3);
+  drawDividerAt(0, 3);
+  drawScoreAt(0, 0, score);
+  scoreMove(currentTime);
+  drawPet(SMILE);
+  timePetMovements(currentTime);
+  // Initial pet display
 }
 
 void loop() {
-    unsigned long currentMillis = millis();
+  unsigned long currentTime = millis();
 
   buttonState = digitalRead(buttonPin);
   if (buttonState == LOW) {
-    buttonPresses++;
+    buttonPress++;
     if (onHomeScreen) {
       lcd.clear();
-      drawFace(SMILE);
+      drawDividerAt(1, 3);
+      drawDividerAt(0, 3);
+      drawScoreAt(0, 0, score);
+      drawPet(SMILE);
       timePetMovements(currentTime);
+      scoreMove(currentTime);
     } else {
       lcd.clear();
       lcd.print("Vape Pet");
       lcd.setCursor(0, 1);
       lcd.print("vape to feed me!!");
-      drawFace(SMILE);
+      lcd.clear();
+      drawPet(SMILE);
+      timePetMovements(currentTime);
+      scoreMove(currentTime);
     }
     onHomeScreen = !onHomeScreen;
     delay(500);
   }
 
-  buttonListener();
+  buttonListener(); // Call the button listener function
 
-
-  if (buttonPresses > 0) {
-    drawFace(OPEN_MOUTH);
-
+  if (buttonPress > 0) {
+    drawPet(SMOKE);
     digitalWrite(vapePin, HIGH);
     delay(500);
     digitalWrite(vapePin, LOW);
-    drawFace(SMILE);
+    drawPet(SMILE);
     score++;
     drawScoreAt(0, 0, score);
-    buttonPresses--;
+    timePetMovements(currentTime);
+    scoreMove(currentTime);
   }
 
-if(onHomeScreen) {
-    drawDividerAt(0, 4);
-    drawScoreAt(0, 0, score);
+  if (onHomeScreen) {
     timePetMovements(currentTime);
-}
+    scoreMove(currentTime);
+    drawDividerAt(1, 3);
+    drawDividerAt(0, 3);
+    drawScoreAt(0, 0, score);
+     // Decrease score over time
+  }
 }
