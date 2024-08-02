@@ -1,0 +1,56 @@
+// just in case you dont want to build the damn thing to see if it works here is the simulator .json for use on wokwi
+
+
+{
+  "version": 1,
+  "author": "TheCatwoman",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -204.6, "left": -26, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 192.6, "left": -0.6, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": 22.63, "left": -22.4, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -115.8,
+      "left": 137.4,
+      "rotate": 90,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -115.8,
+      "left": 204.6,
+      "rotate": 90,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    [ "bb1:18t.a", "bb1:tn.15", "green", [ "v0" ] ],
+    [ "bb1:25t.a", "bb1:tn.20", "green", [ "v0" ] ],
+    [ "lcd1:VSS", "uno:GND.1", "black", [ "v0" ] ],
+    [ "uno:GND.2", "lcd1:K", "black", [ "v19.1", "h128.7", "v-230.4", "h-144" ] ],
+    [ "lcd1:A", "uno:5V", "red", [ "v28.8", "h163.1", "v230.4", "h-144" ] ],
+    [ "lcd1:VDD", "uno:5V", "red", [ "v249.6", "h144.1" ] ],
+    [ "uno:8", "lcd1:D4", "gold", [ "v-28.8", "h-66.8" ] ],
+    [ "lcd1:D5", "uno:9", "orange", [ "v28.8", "h48.1" ] ],
+    [ "lcd1:D6", "uno:10", "gold", [ "v38.4", "h29" ] ],
+    [ "lcd1:D7", "uno:11", "orange", [ "v0" ] ],
+    [ "lcd1:E", "uno:1", "orange", [ "v28.8", "h182.4" ] ],
+    [ "lcd1:RS", "uno:0", "yellow", [ "v9.6", "h9.9" ] ],
+    [ "bb1:20t.c", "uno:2", "yellow", [ "v0" ] ],
+    [ "btn2:1.l", "bb1:27t.d", "", [ "$bb" ] ],
+    [ "btn2:2.l", "bb1:25t.d", "", [ "$bb" ] ],
+    [ "btn2:1.r", "bb1:27b.i", "", [ "$bb" ] ],
+    [ "btn2:2.r", "bb1:25b.i", "", [ "$bb" ] ],
+    [ "btn1:1.l", "bb1:20t.d", "", [ "$bb" ] ],
+    [ "btn1:2.l", "bb1:18t.d", "", [ "$bb" ] ],
+    [ "btn1:1.r", "bb1:20b.i", "", [ "$bb" ] ],
+    [ "btn1:2.r", "bb1:18b.i", "", [ "$bb" ] ],
+    [ "bb1:tn.25", "uno:GND.1", "black", [ "v-0.1", "h59.2" ] ],
+    [ "bb1:tp.25", "uno:5V", "red", [ "v0.3", "h30.4", "v374.4" ] ],
+    [ "bb1:27t.c", "uno:12", "yellow", [ "v-28.8", "h105.6" ] ]
+  ],
+  "dependencies": {}
+}
