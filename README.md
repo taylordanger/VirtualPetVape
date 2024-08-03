@@ -1,4 +1,4 @@
-# Vape Pet LCD Display
+# Vape Pet LCD Display  (Tokeamachi)
 
 This project uses an Arduino UNO R3 and an LCD screen to create a virtual pet that responds to button presses and a vape sensor. The pet's face can show different expressions, and its movements are animated on the LCD screen. The project is divided into four source files, each handling different aspects of the functionality.
 
