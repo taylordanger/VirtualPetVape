@@ -46,8 +46,8 @@ Manages the timed movements of the pet on the LCD screen and adjusts the score p
    - Connect the vape sensor to pin 3.
 
 2. **Clone the repository:**
-   ```bash
-  [ git clone <repository_url>](https://github.com/taylordanger/VirtualPetVape)
+   [```bash
+  [ git clone <repository_url](https://github.com/taylordanger/VirtualPetVape.git)>](https://github.com/taylordanger/VirtualPetVape)
 
    Open the project in the Arduino IDE:
 
