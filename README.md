@@ -47,7 +47,7 @@ Manages the timed movements of the pet on the LCD screen and adjusts the score p
 
 2. **Clone the repository:**
    ```bash
-   git clone <repository_url>
+  [ git clone <repository_url>](https://github.com/taylordanger/VirtualPetVape)
 
    Open the project in the Arduino IDE:
 
@@ -95,10 +95,8 @@ Contributions are welcome! Please fork the repository and create a pull request 
 Contact
 For questions or suggestions, please open an issue in the repository.
 
-javascript
-Copy code
 
-Replace `<repository_url>` with the actual URL of your repository. This `README.md` file provides a comprehensive overview of your project, including descriptions of each file, hardware setup, installation instructions, and usage guidelines.
+
 
 
 
